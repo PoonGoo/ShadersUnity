@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -9,9 +8,6 @@ public class PixelizePass : ScriptableRenderPass
 
     private RenderTargetIdentifier colorBuffer, pixelBuffer;
     private int pixelBufferID = Shader.PropertyToID("_PixelBuffer");
-
-    //private RenderTargetIdentifier pointBuffer;
-    //private int pointBufferID = Shader.PropertyToID("_PointBuffer");
 
     private Material material;
     private int pixelScreenHeight, pixelScreenWidth;
@@ -27,9 +23,6 @@ public class PixelizePass : ScriptableRenderPass
     {
         colorBuffer = renderingData.cameraData.renderer.cameraColorTarget;
         RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
-
-        //cmd.GetTemporaryRT(pointBufferID, descriptor.width, descriptor.height, 0, FilterMode.Point);
-        //pointBuffer = new RenderTargetIdentifier(pointBufferID);
 
         pixelScreenHeight = settings.screenHeight;
         pixelScreenWidth = (int)(pixelScreenHeight * renderingData.cameraData.camera.aspect + 0.5f);
@@ -52,19 +45,21 @@ public class PixelizePass : ScriptableRenderPass
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, new ProfilingSampler("Pixelize Pass")))
         {
-            // Fetch the Volume Component
             VolumeStack stack = VolumeManager.instance.stack;
             PixelizeVolume pixelizeVolume = stack.GetComponent<PixelizeVolume>();
 
-            if (!pixelizeVolume.IsActive()) return; // If disabled, return
+            if (!pixelizeVolume.IsActive()) return; 
 
-            // Apply new settings from Volume Component
             pixelScreenHeight = pixelizeVolume.screenHeight.value;
             pixelScreenWidth = (int)(pixelScreenHeight * renderingData.cameraData.camera.aspect + 0.5f);
 
             material.SetVector("_BlockCount", new Vector2(pixelScreenWidth, pixelScreenHeight));
             material.SetVector("_BlockSize", new Vector2(1.0f / pixelScreenWidth, 1.0f / pixelScreenHeight));
             material.SetVector("_HalfBlockSize", new Vector2(0.5f / pixelScreenWidth, 0.5f / pixelScreenHeight));
+
+            material.SetFloat("_WaveFrequency", pixelizeVolume.waveFrequency.value);
+            material.SetFloat("_WaveSpeed", pixelizeVolume.waveSpeed.value);
+            material.SetFloat("_WaveAmplitude", pixelizeVolume.waveAmplitude.value);
 
             Blit(cmd, colorBuffer, pixelBuffer, material);
             Blit(cmd, pixelBuffer, colorBuffer);
@@ -74,12 +69,9 @@ public class PixelizePass : ScriptableRenderPass
         CommandBufferPool.Release(cmd);
     }
 
-
     public override void OnCameraCleanup(CommandBuffer cmd)
     {
         if (cmd == null) throw new System.ArgumentNullException("cmd");
         cmd.ReleaseTemporaryRT(pixelBufferID);
-        //cmd.ReleaseTemporaryRT(pointBufferID);
     }
-
 }

@@ -8,6 +8,10 @@ public class PixelizeVolume : VolumeComponent, IPostProcessComponent
     public ClampedIntParameter screenHeight = new ClampedIntParameter(144, 32, 1080);
     public BoolParameter isEnabled = new BoolParameter(false);
 
-    public bool IsActive() => isEnabled.value; // Ensure effect is only active when enabled
-    public bool IsTileCompatible() => false; // Not a tile-based effect
+    public ClampedFloatParameter waveFrequency = new ClampedFloatParameter(20.0f, 0.0f, 50.0f);
+    public ClampedFloatParameter waveSpeed = new ClampedFloatParameter(3.0f, 0.0f, 10.0f);
+    public ClampedFloatParameter waveAmplitude = new ClampedFloatParameter(0.005f, 0.0f, 0.02f);
+
+    public bool IsActive() => isEnabled.value; 
+    public bool IsTileCompatible() => false; 
 }

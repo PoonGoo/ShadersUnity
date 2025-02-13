@@ -39,7 +39,11 @@ Shader "Hidden/Pixelize"
         uniform float2 _BlockCount;
         uniform float2 _BlockSize;
         uniform float2 _HalfBlockSize;
-        uniform float4 _Time; // Using Unity's built-in time vector
+
+    
+        uniform float _WaveFrequency;
+        uniform float _WaveSpeed;
+        uniform float _WaveAmplitude;
 
         Varyings vert(Attributes IN)
         {
@@ -58,15 +62,9 @@ Shader "Hidden/Pixelize"
             HLSLPROGRAM
             half4 frag(Varyings IN) : SV_TARGET
             {
-                // Apply a sine wave distortion to the UV coordinates for a wavy effect.
-                // You can adjust these values to change the frequency, speed, and amplitude.
-                float waveFrequency = 20.0;
-                float waveSpeed = 3.0;
-                float waveAmplitude = 0.005;
-                float wave = sin(IN.uv.y * waveFrequency + _Time.y * waveSpeed) * waveAmplitude;
+                float wave = sin(IN.uv.y * _WaveFrequency + _Time.y * _WaveSpeed) * _WaveAmplitude;
                 float2 distortedUV = IN.uv + float2(wave, 0.0);
 
-                // Now perform the pixelation on the distorted UVs.
                 float2 blockPos = floor(distortedUV * _BlockCount);
                 float2 blockCenter = blockPos * _BlockSize + _HalfBlockSize;
                 half4 tex = SAMPLE_TEXTURE2D(_MainTex, sampler_point_clamp, blockCenter);

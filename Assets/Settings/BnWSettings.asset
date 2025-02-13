@@ -106,10 +106,19 @@ MonoBehaviour:
   active: 0
   screenHeight:
     m_OverrideState: 1
-    m_Value: 585
+    m_Value: 162
   isEnabled:
     m_OverrideState: 1
     m_Value: 1
+  waveFrequency:
+    m_OverrideState: 1
+    m_Value: 18.6
+  waveSpeed:
+    m_OverrideState: 1
+    m_Value: 1.48
+  waveAmplitude:
+    m_OverrideState: 1
+    m_Value: 0.01198
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,13 +47,24 @@ public class PixelizePass : ScriptableRenderPass
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
+        if (!renderingData.cameraData.postProcessEnabled) return;
+
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, new ProfilingSampler("Pixelize Pass")))
         {
-            // No-shader variant
-            //Blit(cmd, colorBuffer, pointBuffer);
-            //Blit(cmd, pointBuffer, pixelBuffer);
-            //Blit(cmd, pixelBuffer, colorBuffer);
+            // Fetch the Volume Component
+            VolumeStack stack = VolumeManager.instance.stack;
+            PixelizeVolume pixelizeVolume = stack.GetComponent<PixelizeVolume>();
+
+            if (!pixelizeVolume.IsActive()) return; // If disabled, return
+
+            // Apply new settings from Volume Component
+            pixelScreenHeight = pixelizeVolume.screenHeight.value;
+            pixelScreenWidth = (int)(pixelScreenHeight * renderingData.cameraData.camera.aspect + 0.5f);
+
+            material.SetVector("_BlockCount", new Vector2(pixelScreenWidth, pixelScreenHeight));
+            material.SetVector("_BlockSize", new Vector2(1.0f / pixelScreenWidth, 1.0f / pixelScreenHeight));
+            material.SetVector("_HalfBlockSize", new Vector2(0.5f / pixelScreenWidth, 0.5f / pixelScreenHeight));
 
             Blit(cmd, colorBuffer, pixelBuffer, material);
             Blit(cmd, pixelBuffer, colorBuffer);
@@ -62,6 +73,7 @@ public class PixelizePass : ScriptableRenderPass
         context.ExecuteCommandBuffer(cmd);
         CommandBufferPool.Release(cmd);
     }
+
 
     public override void OnCameraCleanup(CommandBuffer cmd)
     {

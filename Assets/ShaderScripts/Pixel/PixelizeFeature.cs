@@ -20,12 +20,15 @@ public class PixelizeFeature : ScriptableRendererFeature
     }
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
+        // Fetch the Volume Component
+        VolumeStack stack = VolumeManager.instance.stack;
+        PixelizeVolume pixelizeVolume = stack.GetComponent<PixelizeVolume>();
 
-#if UNITY_EDITOR
-        if (renderingData.cameraData.isSceneViewCamera) return;
-#endif
+        if (pixelizeVolume == null || !pixelizeVolume.IsActive()) return;
+
         renderer.EnqueuePass(customPass);
     }
+
 }
 
 

@@ -73,8 +73,8 @@ public class PixelizePass : ScriptableRenderPass
             material.SetFloat("_EnableGlitch", pixelizeVolume.enableGlitch.value ? 1.0f : 0.0f);
 
             // Set RGB split parameters
-            material.SetFloat("_RGBSplitAmount", pixelizeVolume.rgbSplitAmount.value);
-            material.SetFloat("_EnableRGBSplit", pixelizeVolume.enableRGBSplit.value ? 1.0f : 0.0f);
+/*            material.SetFloat("_RGBSplitAmount", pixelizeVolume.rgbSplitAmount.value);
+            material.SetFloat("_EnableRGBSplit", pixelizeVolume.enableRGBSplit.value ? 1.0f : 0.0f);*/
 
             Blit(cmd, colorBuffer, pixelBuffer, material);
             Blit(cmd, pixelBuffer, colorBuffer);

@@ -20,8 +20,8 @@ public class PixelizeVolume : VolumeComponent, IPostProcessComponent
     public ClampedFloatParameter glitchFrequency = new ClampedFloatParameter(0.05f, 0.0f, 1.0f);
 
     // RGB Split properties
-    public BoolParameter enableRGBSplit = new BoolParameter(false);
-    public ClampedFloatParameter rgbSplitAmount = new ClampedFloatParameter(0.002f, 0.0f, 0.01f);
+/*    public BoolParameter enableRGBSplit = new BoolParameter(false);
+    public ClampedFloatParameter rgbSplitAmount = new ClampedFloatParameter(0.002f, 0.0f, 0.01f);*/
 
     public bool IsActive() => isEnabled.value;
     public bool IsTileCompatible() => false;

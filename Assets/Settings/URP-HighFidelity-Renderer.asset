@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6203237459917787750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0efb8c91d1c284d8131a76467133d8, type: 3}
+  m_Name: TintScreenFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  tintMaterial: {fileID: 2100000, guid: 07ba1af7791b8c44494a58fb32c8244f, type: 2}
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +70,8 @@ MonoBehaviour:
   - {fileID: 3892433740165282666}
   - {fileID: 6537559643974760448}
   - {fileID: 3269335795179189460}
-  m_RendererFeatureMap: adc0de57c6d2eee56afb4b1addb3043600780bd5db13ba5ad4f41f8395035f2d
+  - {fileID: 361799468293942857}
+  m_RendererFeatureMap: adc0de57c6d2eee56afb4b1addb3043600780bd5db13ba5ad4f41f8395035f2d49ee9513b35e0505
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -99,6 +114,19 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &361799468293942857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afa3dc47743dec4f8226eb541332068, type: 3}
+  m_Name: RGBSplitFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &3269335795179189460
 MonoBehaviour:
   m_ObjectHideFlags: 0

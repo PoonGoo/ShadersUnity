@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6155142362968669616
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df01aabb1c58ef24ca5909ce3ba86a7a, type: 3}
+  m_Name: RGBSplitVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  isEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+  rgbSplitAmount:
+    m_OverrideState: 1
+    m_Value: 0.01
+--- !u!114 &-900836669234658172
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c59c63682075bd4587d9b3db137fb2f, type: 3}
+  m_Name: BlackNWhite
+  m_EditorClassIdentifier: 
+  active: 1
+  blendIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-699795581450846563
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165b2d0fc8a8f1041b483c8f00742ecd, type: 3}
+  m_Name: PixelizeVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  screenHeight:
+    m_OverrideState: 1
+    m_Value: 489
+  isEnabled:
+    m_OverrideState: 1
+    m_Value: 0
+  waveFrequency:
+    m_OverrideState: 1
+    m_Value: 0
+  waveSpeed:
+    m_OverrideState: 1
+    m_Value: 0
+  waveAmplitude:
+    m_OverrideState: 1
+    m_Value: 0
+  enableGlitch:
+    m_OverrideState: 1
+    m_Value: 0
+  glitchIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+  glitchFrequency:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: PostProcess
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -900836669234658172}
+  - {fileID: -699795581450846563}
+  - {fileID: 136262535766141733}
+  - {fileID: -6155142362968669616}
+--- !u!114 &136262535766141733
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb588f0a2bc4244c838baf80e4feb6e, type: 3}
+  m_Name: GaussianBlurPostProcess
+  m_EditorClassIdentifier: 
+  active: 1
+  blurIntensity:
+    m_OverrideState: 1
+    m_Value: 0

@@ -41,17 +41,17 @@ Shader "Hidden/Pixelize"
         uniform float2 _BlockSize;
         uniform float2 _HalfBlockSize;
 
-        // Wave distortion uniforms
+        // Wave distortion 
         uniform float _WaveFrequency;
         uniform float _WaveSpeed;
         uniform float _WaveAmplitude;
 
-        // Glitch uniforms
+        // Glitch 
         uniform float _GlitchIntensity;
         uniform float _GlitchFrequency;
         uniform float _EnableGlitch;
 
-        // RGB Split uniforms
+        // RGB Split 
         uniform float _RGBSplitAmount;
         uniform float _EnableRGBSplit;
 
@@ -72,25 +72,21 @@ Shader "Hidden/Pixelize"
             HLSLPROGRAM
             half4 frag(Varyings IN) : SV_TARGET
             {
-                // Apply a horizontal wave distortion based on the vertical UV coordinate
                 float wave = sin(IN.uv.y * _WaveFrequency + _Time.y * _WaveSpeed) * _WaveAmplitude;
                 float2 distortedUV = IN.uv + float2(wave, 0.0);
 
-                // Optionally apply a glitch effect (random horizontal offset)
                 float2 finalUV = distortedUV;
                 if (_EnableGlitch > 0.5)
                 {
-                    // Generate a pseudo-random value based on the UVs
                     float randomValue = frac(sin(dot(distortedUV, float2(12.9898, 78.233))) * 43758.5453);
-                    // Trigger glitch based on the glitch frequency threshold
+
                     float glitchTrigger = step(1.0 - _GlitchFrequency, randomValue);
-                    // Create a random horizontal offset in the range [-_GlitchIntensity, _GlitchIntensity]
+
                     float randomOffset = (frac(sin(_Time.y * 10.0 + randomValue * 100.0)) - 0.5) * 2.0 * _GlitchIntensity;
                     finalUV += glitchTrigger * float2(randomOffset, 0.0);
                 }
 
                 half4 tex;
-                // If RGB split is enabled, sample each channel with a slight horizontal offset
                 if (_EnableRGBSplit > 0.5)
                 {
                     float2 offset = float2(_RGBSplitAmount, 0.0);

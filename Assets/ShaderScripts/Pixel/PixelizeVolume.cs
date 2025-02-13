@@ -8,15 +8,15 @@ public class PixelizeVolume : VolumeComponent, IPostProcessComponent
     public ClampedIntParameter screenHeight = new ClampedIntParameter(144, 32, 1080);
     public BoolParameter isEnabled = new BoolParameter(false);
 
-    // Wave distortion properties
+    // Wave distortion 
     public ClampedFloatParameter waveFrequency = new ClampedFloatParameter(20.0f, 0.0f, 50.0f);
     public ClampedFloatParameter waveSpeed = new ClampedFloatParameter(3.0f, 0.0f, 10.0f);
     public ClampedFloatParameter waveAmplitude = new ClampedFloatParameter(0.005f, 0.0f, 0.02f);
 
-    // Digital Glitch properties
+    // Digital Glitch 
     public BoolParameter enableGlitch = new BoolParameter(false);
     public ClampedFloatParameter glitchIntensity = new ClampedFloatParameter(0.05f, 0.0f, 0.1f);
-    // Glitch frequency here is interpreted as the chance (0-1) that a glitch will trigger per pixel
+
     public ClampedFloatParameter glitchFrequency = new ClampedFloatParameter(0.05f, 0.0f, 1.0f);
 
     // RGB Split properties

@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 0
   rgbSplitAmount:
     m_OverrideState: 1
-    m_Value: 0.00869
+    m_Value: 0.00886
   pulseFrequency:
     m_OverrideState: 1
     m_Value: 9.29
@@ -56,13 +56,13 @@ MonoBehaviour:
   active: 1
   screenHeight:
     m_OverrideState: 1
-    m_Value: 381
+    m_Value: 143
   isEnabled:
     m_OverrideState: 1
     m_Value: 0
   waveFrequency:
     m_OverrideState: 1
-    m_Value: 3.9
+    m_Value: 23.6
   waveSpeed:
     m_OverrideState: 1
     m_Value: 0
@@ -71,10 +71,10 @@ MonoBehaviour:
     m_Value: 0
   enableGlitch:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   glitchIntensity:
     m_OverrideState: 1
-    m_Value: 0.0706
+    m_Value: 0.0464
   glitchFrequency:
     m_OverrideState: 1
     m_Value: 0.368

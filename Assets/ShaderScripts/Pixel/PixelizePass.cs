@@ -47,7 +47,6 @@ public class PixelizePass : ScriptableRenderPass
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, new ProfilingSampler("Pixelize Pass")))
         {
-            // Fetch the active volume component
             VolumeStack stack = VolumeManager.instance.stack;
             PixelizeVolume pixelizeVolume = stack.GetComponent<PixelizeVolume>();
 
@@ -62,17 +61,17 @@ public class PixelizePass : ScriptableRenderPass
             material.SetVector("_BlockSize", new Vector2(1.0f / pixelScreenWidth, 1.0f / pixelScreenHeight));
             material.SetVector("_HalfBlockSize", new Vector2(0.5f / pixelScreenWidth, 0.5f / pixelScreenHeight));
 
-            // Set wave distortion parameters
+            // wave distortion 
             material.SetFloat("_WaveFrequency", pixelizeVolume.waveFrequency.value);
             material.SetFloat("_WaveSpeed", pixelizeVolume.waveSpeed.value);
             material.SetFloat("_WaveAmplitude", pixelizeVolume.waveAmplitude.value);
 
-            // Set glitch parameters
+            // glitch 
             material.SetFloat("_GlitchIntensity", pixelizeVolume.glitchIntensity.value);
             material.SetFloat("_GlitchFrequency", pixelizeVolume.glitchFrequency.value);
             material.SetFloat("_EnableGlitch", pixelizeVolume.enableGlitch.value ? 1.0f : 0.0f);
 
-            // Set RGB split parameters
+            // RGB split 
 /*            material.SetFloat("_RGBSplitAmount", pixelizeVolume.rgbSplitAmount.value);
             material.SetFloat("_EnableRGBSplit", pixelizeVolume.enableRGBSplit.value ? 1.0f : 0.0f);*/
 

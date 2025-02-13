@@ -106,32 +106,48 @@ MonoBehaviour:
   active: 1
   screenHeight:
     m_OverrideState: 1
-    m_Value: 604
+    m_Value: 173
   isEnabled:
     m_OverrideState: 1
     m_Value: 0
   waveFrequency:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 27.8
   waveSpeed:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 4.89
   waveAmplitude:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.0095
   enableGlitch:
     m_OverrideState: 1
     m_Value: 0
   glitchIntensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.0429
   glitchFrequency:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.237
   enableRGBSplit:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   rgbSplitAmount:
+    m_OverrideState: 1
+    m_Value: 0.01
+--- !u!114 &-3284461474243305010
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb588f0a2bc4244c838baf80e4feb6e, type: 3}
+  m_Name: GaussianBlurPostProcess
+  m_EditorClassIdentifier: 
+  active: 1
+  blurIntensity:
     m_OverrideState: 1
     m_Value: 0
 --- !u!114 &11400000
@@ -153,6 +169,7 @@ MonoBehaviour:
   - {fileID: 8718827403402255620}
   - {fileID: -4736622986269887043}
   - {fileID: -3548442122720595216}
+  - {fileID: -3284461474243305010}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3

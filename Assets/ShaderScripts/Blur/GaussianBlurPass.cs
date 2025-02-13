@@ -48,7 +48,12 @@ public class GaussianBlurPass : ScriptableRenderPass
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        if (blurPostProcess == null || !blurPostProcess.IsActive())
+        if (blurPostProcess == null)
+        {
+            blurPostProcess = VolumeManager.instance.stack.GetComponent<GaussianBlurPostProcess>();
+        }
+
+        if (blurPostProcess == null || !blurPostProcess.IsActive() || blurPostProcess.blurIntensity == null)
         {
             return;
         }
@@ -56,21 +61,20 @@ public class GaussianBlurPass : ScriptableRenderPass
         CommandBuffer cmd = CommandBufferPool.Get("Custom/Gaussian Blur");
 
         int gridSize = Mathf.CeilToInt(blurPostProcess.blurIntensity.value * 6.0f);
+        if (gridSize % 2 == 0) gridSize += 1;
 
-        if (gridSize % 2 == 0)
+        if (!material)
         {
-            gridSize += 1;
+            material = CoreUtils.CreateEngineMaterial("Custom/GaussianBlur");
         }
 
         material.SetInteger("_GridSize", gridSize);
-        material.SetFloat ("_Spread", blurPostProcess.blurIntensity.value);
+        material.SetFloat("_Spread", blurPostProcess.blurIntensity.value);
 
         cmd.Blit(src, texID, material, 0);
         cmd.Blit(texID, src, material, 1);
 
         context.ExecuteCommandBuffer(cmd);
-
-        cmd.Clear();
         CommandBufferPool.Release(cmd);
     }
 }

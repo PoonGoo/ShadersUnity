@@ -54,7 +54,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: 3892433740165282666}
-  m_RendererFeatureMap: adc0de57c6d2eee56afb4b1addb30436
+  - {fileID: 6537559643974760448}
+  m_RendererFeatureMap: adc0de57c6d2eee56afb4b1addb3043600780bd5db13ba5a
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -124,3 +125,19 @@ MonoBehaviour:
   m_Name: BWRenderPassFeature
   m_EditorClassIdentifier: 
   m_Active: 0
+--- !u!114 &6537559643974760448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce5d0637ecc0384a994d697688e830b, type: 3}
+  m_Name: PixelizeFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    renderPassEvent: 550
+    screenHeight: 144

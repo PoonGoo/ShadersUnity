@@ -16,7 +16,8 @@ public class PixelizePass : ScriptableRenderPass
     {
         this.settings = settings;
         this.renderPassEvent = settings.renderPassEvent;
-        if (material == null) material = CoreUtils.CreateEngineMaterial("Hidden/Pixelize");
+        if (material == null)
+            material = CoreUtils.CreateEngineMaterial("Hidden/Pixelize");
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
@@ -40,16 +41,20 @@ public class PixelizePass : ScriptableRenderPass
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        if (!renderingData.cameraData.postProcessEnabled) return;
+        if (!renderingData.cameraData.postProcessEnabled)
+            return;
 
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, new ProfilingSampler("Pixelize Pass")))
         {
+            // Fetch the active volume component
             VolumeStack stack = VolumeManager.instance.stack;
             PixelizeVolume pixelizeVolume = stack.GetComponent<PixelizeVolume>();
 
-            if (!pixelizeVolume.IsActive()) return; 
+            if (!pixelizeVolume.IsActive())
+                return;
 
+            // Update pixelation grid values based on screen height
             pixelScreenHeight = pixelizeVolume.screenHeight.value;
             pixelScreenWidth = (int)(pixelScreenHeight * renderingData.cameraData.camera.aspect + 0.5f);
 
@@ -57,9 +62,19 @@ public class PixelizePass : ScriptableRenderPass
             material.SetVector("_BlockSize", new Vector2(1.0f / pixelScreenWidth, 1.0f / pixelScreenHeight));
             material.SetVector("_HalfBlockSize", new Vector2(0.5f / pixelScreenWidth, 0.5f / pixelScreenHeight));
 
+            // Set wave distortion parameters
             material.SetFloat("_WaveFrequency", pixelizeVolume.waveFrequency.value);
             material.SetFloat("_WaveSpeed", pixelizeVolume.waveSpeed.value);
             material.SetFloat("_WaveAmplitude", pixelizeVolume.waveAmplitude.value);
+
+            // Set glitch parameters
+            material.SetFloat("_GlitchIntensity", pixelizeVolume.glitchIntensity.value);
+            material.SetFloat("_GlitchFrequency", pixelizeVolume.glitchFrequency.value);
+            material.SetFloat("_EnableGlitch", pixelizeVolume.enableGlitch.value ? 1.0f : 0.0f);
+
+            // Set RGB split parameters
+            material.SetFloat("_RGBSplitAmount", pixelizeVolume.rgbSplitAmount.value);
+            material.SetFloat("_EnableRGBSplit", pixelizeVolume.enableRGBSplit.value ? 1.0f : 0.0f);
 
             Blit(cmd, colorBuffer, pixelBuffer, material);
             Blit(cmd, pixelBuffer, colorBuffer);
@@ -71,7 +86,8 @@ public class PixelizePass : ScriptableRenderPass
 
     public override void OnCameraCleanup(CommandBuffer cmd)
     {
-        if (cmd == null) throw new System.ArgumentNullException("cmd");
+        if (cmd == null)
+            throw new System.ArgumentNullException("cmd");
         cmd.ReleaseTemporaryRT(pixelBufferID);
     }
 }

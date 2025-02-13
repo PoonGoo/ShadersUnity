@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be83a06e9f57c443bbf52a9ddd0626c, type: 3}
   m_Name: BWRenderPassFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
 --- !u!114 &6537559643974760448
 MonoBehaviour:
   m_ObjectHideFlags: 0

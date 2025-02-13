@@ -13,6 +13,9 @@ public class BWRenderPassFeature : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
+        VolumeStack stack = VolumeManager.instance.stack;
+        BlackNWhite bwPP = stack.GetComponent<BlackNWhite>();
+        if (bwPP == null || !bwPP.IsActive()) return;
         renderer.EnqueuePass(bwPass);
     }
 

@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df01aabb1c58ef24ca5909ce3ba86a7a, type: 3}
   m_Name: RGBSplitVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   isEnabled:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   rgbSplitAmount:
     m_OverrideState: 1
-    m_Value: 0.01
+    m_Value: 0.00869
+  pulseFrequency:
+    m_OverrideState: 1
+    m_Value: 9.29
+  pulseAmplitude:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &-900836669234658172
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -47,16 +53,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165b2d0fc8a8f1041b483c8f00742ecd, type: 3}
   m_Name: PixelizeVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   screenHeight:
     m_OverrideState: 1
-    m_Value: 489
+    m_Value: 381
   isEnabled:
     m_OverrideState: 1
     m_Value: 0
   waveFrequency:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3.9
   waveSpeed:
     m_OverrideState: 1
     m_Value: 0
@@ -68,10 +74,10 @@ MonoBehaviour:
     m_Value: 0
   glitchIntensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.0706
   glitchFrequency:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.368
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class RGBSplitPass : ScriptableRenderPass
 
     public RGBSplitPass()
     {
-        // Set the pass event as needed (e.g., before post-processing)
         renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         material = CoreUtils.CreateEngineMaterial("Hidden/RGBSplit");
     }
@@ -24,18 +23,17 @@ public class RGBSplitPass : ScriptableRenderPass
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        // Check that post-processing is enabled
         if (!renderingData.cameraData.postProcessEnabled)
             return;
 
-        // Get the active volume component
         var stack = VolumeManager.instance.stack;
         var rgbSplitVolume = stack.GetComponent<RGBSplitVolume>();
         if (rgbSplitVolume == null || !rgbSplitVolume.IsActive())
             return;
 
-        // Set the shader parameter from the volume
         material.SetFloat("_RGBSplitAmount", rgbSplitVolume.rgbSplitAmount.value);
+        material.SetFloat("_PulseFrequency", rgbSplitVolume.pulseFrequency.value);
+        material.SetFloat("_PulseAmplitude", rgbSplitVolume.pulseAmplitude.value);
 
         CommandBuffer cmd = CommandBufferPool.Get("RGB Split Pass");
         cmd.Blit(source, temporaryRTId, material);

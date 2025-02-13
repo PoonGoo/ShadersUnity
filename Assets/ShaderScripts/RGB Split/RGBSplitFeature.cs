@@ -13,7 +13,6 @@ public class RGBSplitFeature : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        // Fetch the volume component for RGB Split
         var stack = VolumeManager.instance.stack;
         var rgbSplitVolume = stack.GetComponent<RGBSplitVolume>();
         if (rgbSplitVolume == null || !rgbSplitVolume.IsActive())
